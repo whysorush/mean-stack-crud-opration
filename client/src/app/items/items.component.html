@@ -1,0 +1,21 @@
+<div class="container">
+    <h2>{{ isEditMode ? 'Edit' : 'Create' }} Item</h2>
+    <form (ngSubmit)="editOrUpdateItem()" class="mb-4">
+      <input [(ngModel)]="newItem.name" name="name" placeholder="Name" class="form-control mb-2">
+      <input type="text" [(ngModel)]="newItem.description" name="description" placeholder="Description" class="form-control mb-2">
+      <button type="submit" class="btn btn-success">{{ isEditMode ? 'Update' : 'Create' }}</button>
+      <button *ngIf="isEditMode" (click)="cancelEdit()" class="btn btn-secondary">Cancel</button>
+    </form>
+<h2>Items List</h2>
+  <ul class="list-group">
+    <li *ngFor="let item of items ;index as i " class="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        {{i+1}} - {{ item.name }} - {{ item.description }}
+      </div>
+      <div>
+        <button (click)="deleteItem(item)" class="btn btn-danger">Delete</button>
+        <button (click)="editItem(item)" class="btn btn-primary">Edit</button>
+      </div>
+    </li>
+  </ul>
+</div>
